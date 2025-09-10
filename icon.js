@@ -1,6 +1,8 @@
 // 图标相关：URL 生成和首页用户渲染
 function getIconUrl(userName) {
-    return `https://r4.dlozs.top/images/${userName}.jpg`;
+    // 替换特殊字符 * : / 为 _ 
+    let sanitizedName = userName.replace(/[*:/]/g, '_');
+    return `https://r4.dlozs.top/images/${sanitizedName}.jpg`;
 }
 
 async function loadUsers() {
