@@ -126,13 +126,16 @@ header {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.9);
+    display: flex; /* 用 flex 确保居中 */
     justify-content: center;
     align-items: center;
 }
 
 .modal-content {
-    max-width: 90%;
-    max-height: 90%;
+    height: 100%; /* 高度占满 */
+    width: auto; /* 宽度自适应 */
+    max-width: 100%; /* 防止宽度溢出 */
+    object-fit: contain; /* 保持比例，不失真 */
 }
 
 .close {
