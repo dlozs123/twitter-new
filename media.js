@@ -115,10 +115,15 @@ function setupImageModal() {
         });
     }
 
+    // 确保 modal 默认隐藏
+    modal.style.display = 'none';
+
     images.forEach(img => {
         img.addEventListener('click', () => {
-            document.getElementById('modal-image').src = img.src;
-            modal.style.display = 'block';
+            const modalImage = document.getElementById('modal-image');
+            modalImage.src = ''; // 先清空，防止旧图片残留
+            modalImage.src = img.src; // 重新设置 src
+            modal.style.display = 'flex'; // 用 flex 显示，确保居中
         });
     });
 }
