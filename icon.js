@@ -753,9 +753,9 @@ async function loadUsers() {
         title.textContent = `${category} 类用户`;
         categorySection.appendChild(title);
 
-        const grid = document.createElement('div');
-        grid.className = 'user-grid';
-        categorySection.appendChild(grid);
+        const row = document.createElement('div');
+        row.className = 'user-row';
+        categorySection.appendChild(row);
 
         const categoryUsers = userCategories[category];
         categoryUsers.forEach(screenName => {
@@ -770,12 +770,12 @@ async function loadUsers() {
                 card.onclick = () => {
                     window.location.href = `user.html?screen_name=${screenName}`;
                 };
-                grid.appendChild(card);
+                row.appendChild(card);
             }
         });
 
         // 只添加有用户的类别
-        if (grid.children.length > 0) {
+        if (row.children.length > 0) {
             userList.appendChild(categorySection);
         }
     });
@@ -787,9 +787,9 @@ async function loadUsers() {
     otherTitle.textContent = '其他用户';
     otherSection.appendChild(otherTitle);
 
-    const otherGrid = document.createElement('div');
-    otherGrid.className = 'user-grid';
-    otherSection.appendChild(otherGrid);
+    const otherRow = document.createElement('div');
+    otherRow.className = 'user-row';
+    otherSection.appendChild(otherRow);
 
     Object.keys(users).forEach(screenName => {
         if (!Object.values(userCategories).flat().includes(screenName)) {
@@ -803,11 +803,11 @@ async function loadUsers() {
             card.onclick = () => {
                 window.location.href = `user.html?screen_name=${screenName}`;
             };
-            otherGrid.appendChild(card);
+            otherRow.appendChild(card);
         }
     });
 
-    if (otherGrid.children.length > 0) {
+    if (otherRow.children.length > 0) {
         userList.appendChild(otherSection);
     }
 }

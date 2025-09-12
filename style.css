@@ -13,9 +13,9 @@ header {
     text-align: center;
 }
 
-.user-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+.user-row {
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
 }
@@ -28,6 +28,8 @@ header {
     text-align: center;
     cursor: pointer;
     transition: box-shadow 0.3s;
+    flex: 0 0 calc(20% - 20px); /* 假设5个用户一行，调整间距 */
+    max-width: calc(20% - 20px);
 }
 
 .user-card:hover {
@@ -168,7 +170,8 @@ header {
 }
 
 @media (max-width: 600px) {
-    .user-grid {
-        grid-template-columns: 1fr;
+    .user-card {
+        flex: 0 0 calc(50% - 20px); /* 小屏两列 */
+        max-width: calc(50% - 20px);
     }
 }
