@@ -156,8 +156,20 @@ header {
     text-decoration: none;
 }
 
+/* 响应式 */
 @media (max-width: 600px) {
     .user-grid {
         grid-template-columns: 1fr;
     }
 }
+
+/* ===================== 新增类别 section 样式 ===================== */
+.category-section {
+    margin-top: 20px;
+}
+
+.category-section h2 {
+    text-align: center;
+    color: #1da1f2;
+}
+/* ================================================================ */
