@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    display: flex; /* 使用 flex 布局，确保主内容居中 */
 }
 
 header {
@@ -11,6 +12,7 @@ header {
     color: white;
     padding: 10px;
     text-align: center;
+    width: 100%;
 }
 
 .user-row {
@@ -18,6 +20,7 @@ header {
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
+    justify-content: center; /* 居中显示用户卡片 */
 }
 
 .user-card {
@@ -28,8 +31,8 @@ header {
     text-align: center;
     cursor: pointer;
     transition: box-shadow 0.3s;
-    flex: 0 0 calc(20% - 20px); /* 假设5个用户一行，调整间距 */
-    max-width: calc(20% - 20px);
+    flex: 0 0 calc(25% - 20px); /* 每行4个用户，调整间距 */
+    max-width: calc(25% - 20px);
 }
 
 .user-card:hover {
@@ -169,9 +172,79 @@ header {
     margin-bottom: 10px; /* 标题与网格间距 */
 }
 
+/* 侧边目录模块样式 */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    z-index: 1001;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+.sidebar-toggle {
+    position: absolute;
+    right: -30px;
+    top: 20px;
+    background-color: #1da1f2;
+    color: white;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.sidebar-content {
+    margin-top: 20px;
+}
+
+#sidebar-search {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#category-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#category-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+#category-list li:hover {
+    background-color: #e0e0e0;
+}
+
+#user-list {
+    margin-left: 270px; /* 留出侧边栏空间 */
+    width: calc(100% - 270px); /* 确保主内容宽度 */
+}
+
 @media (max-width: 600px) {
     .user-card {
         flex: 0 0 calc(50% - 20px); /* 小屏两列 */
         max-width: calc(50% - 20px);
     }
-}
+
+    .sidebar {
+        width: 200px;
+    }
+
+    #user-list {
+        margin-left: 220px;
+        width: calc(100% -
