@@ -872,10 +872,4 @@ function setupSidebar() {
         });
         categoryList.appendChild(li);
     }
-
-    // 使 toggle 按钮随滚动
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        sidebarToggle.style.top = `${70 + scrollTop}px`; // 70px 是 header 高度
-    });
 }
