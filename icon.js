@@ -821,7 +821,7 @@ async function loadUsers() {
 // 设置侧边目录模块
 function setupSidebar() {
     const sidebar = document.getElementById('sidebar');
-    const sidebarToggle = sidebar.querySelector('.sidebar-toggle');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
     const sidebarContent = sidebar.querySelector('.sidebar-content');
 
     // 初始状态：侧边栏收起
