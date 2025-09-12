@@ -16,6 +16,12 @@ header {
     top: 0;
     left: 0;
     z-index: 1002;
+    height: 60px; /* 确保 header 高度固定 */
+}
+
+header h1 {
+    margin: 0;
+    line-height: 40px; /* 垂直居中文本 */
 }
 
 #sidebar-toggle {
@@ -144,151 +150,4 @@ header {
 }
 
 .tweet-screenname {
-    color: #888;
-    margin-left: 5px;
-}
-
-.tweet-time {
-    color: #888;
-    font-size: 0.9em;
-    margin-top: 5px;
-}
-
-.tweet-text {
-    margin: 10px 0;
-    white-space: pre-wrap;
-}
-
-.tweet-media {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.tweet-media img, .tweet-media video {
-    max-width: 100%;
-    border-radius: 8px;
-    cursor: pointer; /* 为图片添加指针，表示可点击 */
-}
-
-.tweet-actions {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-}
-
-.action-btn {
-    cursor: pointer;
-    color: #888;
-    transition: color 0.3s;
-}
-
-.action-btn.active {
-    color: #1da1f2;
-}
-
-/* 图片 modal 样式 */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; /* 防止滚动 */
-    background-color: rgba(0,0,0,0.9);
-    flex-direction: column; /* 垂直居中 */
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    max-height: 100%; /* 高度占满，但不溢出 */
-    width: auto; /* 宽度自适应 */
-    max-width: 100%; /* 防止宽度溢出 */
-    object-fit: contain; /* 保持比例，不失真 */
-    margin: auto; /* 额外居中辅助 */
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-}
-
-/* 分类样式 */
-.category-section {
-    margin-top: 20px;
-}
-
-.category-section h2 {
-    text-align: center;
-    color: #1da1f2;
-    margin-bottom: 10px; /* 标题与网格间距 */
-}
-
-@media (max-width: 1200px) {
-    .user-card {
-        flex: 0 0 calc(33.33% - 20px); /* 每行3个用户 */
-        max-width: calc(33.33% - 20px);
-    }
-}
-
-@media (max-width: 800px) {
-    .user-card {
-        flex: 0 0 calc(50% - 20px); /* 小屏两列 */
-        max-width: calc(50% - 20px);
-    }
-
-    .sidebar {
-        width: 200px;
-    }
-
-    #user-list {
-        margin-left: 220px;
-        width: calc(100% - 220px);
-    }
-}
-
-@media (max-width: 600px) {
-    .user-card {
-        flex: 0 0 calc(100% - 20px); /* 单列 */
-        max-width: calc(100% - 20px);
-    }
-
-    .sidebar {
-        width: 100%;
-        height: auto;
-        top: auto;
-        bottom: 0;
-        transform: translateY(100%);
-    }
-
-    .sidebar.collapsed {
-        transform: translateY(0);
-    }
-
-    .sidebar-toggle {
-        left: 20px;
-        top: auto;
-        bottom: -30px;
-        border-radius: 5px 5px 0 0;
-    }
-
-    #user-list {
-        margin-left: 0;
-        width: 100%;
-    }
-}
+    color: #888
