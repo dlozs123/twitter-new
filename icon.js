@@ -750,7 +750,6 @@ async function loadUsers() {
     Object.keys(userCategories).forEach(category => {
         const categorySection = document.createElement('div');
         categorySection.className = 'category-section';
-        categorySection.id = `category-${category}`; // 为每个类别添加 ID，用于跳转
         const title = document.createElement('h2');
         title.textContent = `${category} 类用户`;
         categorySection.appendChild(title);
@@ -785,7 +784,6 @@ async function loadUsers() {
     // 添加其他用户（未分类）
     const otherSection = document.createElement('div');
     otherSection.className = 'category-section';
-    otherSection.id = 'category-other'; // 为其他用户添加 ID
     const otherTitle = document.createElement('h2');
     otherTitle.textContent = '其他用户';
     otherSection.appendChild(otherTitle);
