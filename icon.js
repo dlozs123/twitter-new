@@ -733,6 +733,7 @@ const userCategories = {
     ]
 };
 
+
 async function loadUsers() {
     const data = await getTweetData();
     const users = {};
@@ -819,64 +820,62 @@ async function loadUsers() {
 
 // 设置侧边目录模块
 function setupSidebar() {
-    let sidebar = document.getElementById('sidebar');
-    if (!sidebar) {
-        sidebar = document.createElement('div');
-        sidebar.id = 'sidebar';
-        sidebar.className = 'sidebar collapsed';
-        sidebar.innerHTML = `
-            <div class="sidebar-toggle">📖</div>
-            <div class="sidebar-content">
-                <input type="text" id="sidebar-search" placeholder="搜索...">
-                <ul id="category-list"></ul>
-            </div>
-        `;
-        document.body.appendChild(sidebar);
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = sidebar.querySelector('.sidebar-toggle');
+    const sidebarContent = sidebar.querySelector('.sidebar-content');
 
-        // 切换侧边栏显示/隐藏
-        sidebar.querySelector('.sidebar-toggle').addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-        });
+    // 初始状态：侧边栏收起
+    sidebar.classList.add('collapsed');
 
-        // 搜索功能
-        const searchInput = document.getElementById('sidebar-search');
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            const categories = document.querySelectorAll('#category-list li');
-            categories.forEach(category => {
-                const categoryName = category.textContent.toLowerCase();
-                if (categoryName.includes(query)) {
-                    category.style.display = 'block';
-                } else {
-                    category.style.display = 'none';
-                }
-            });
-        });
+    // 切换侧边栏显示/隐藏
+    sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+    });
 
-        // 填充目录
-        const categoryList = document.getElementById('category-list');
-        Object.keys(userCategories).forEach(category => {
-            if (userCategories[category].length > 0) {
-                const li = document.createElement('li');
-                li.textContent = category;
-                li.addEventListener('click', () => {
-                    document.getElementById(`category-${category}`).scrollIntoView({ behavior: 'smooth' });
-                    sidebar.classList.add('collapsed'); // 点击后收起侧边栏
-                });
-                categoryList.appendChild(li);
+    // 搜索功能
+    const searchInput = document.getElementById('sidebar-search');
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        const categories = document.querySelectorAll('#category-list li');
+        categories.forEach(category => {
+            const categoryName = category.textContent.toLowerCase();
+            if (categoryName.includes(query)) {
+                category.style.display = 'block';
+            } else {
+                category.style.display = 'none';
             }
         });
+    });
 
-        // 添加其他用户目录项
-        const otherUsers = Object.keys(users).filter(screenName => !Object.values(userCategories).flat().includes(screenName));
-        if (otherUsers.length > 0) {
+    // 填充目录
+    const categoryList = document.getElementById('category-list');
+    Object.keys(userCategories).forEach(category => {
+        if (userCategories[category].length > 0) {
             const li = document.createElement('li');
-            li.textContent = '其他用户';
+            li.textContent = category;
             li.addEventListener('click', () => {
-                document.getElementById('category-other').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById(`category-${category}`).scrollIntoView({ behavior: 'smooth' });
                 sidebar.classList.add('collapsed'); // 点击后收起侧边栏
             });
             categoryList.appendChild(li);
         }
+    });
+
+    // 添加其他用户目录项
+    const otherUsers = Object.keys(users).filter(screenName => !Object.values(userCategories).flat().includes(screenName));
+    if (otherUsers.length > 0) {
+        const li = document.createElement('li');
+        li.textContent = '其他用户';
+        li.addEventListener('click', () => {
+            document.getElementById('category-other').scrollIntoView({ behavior: 'smooth' });
+            sidebar.classList.add('collapsed'); // 点击后收起侧边栏
+        });
+        categoryList.appendChild(li);
     }
+
+    // 使 toggle 按钮随滚动
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        sidebarToggle.style.top = `${70 + scrollTop}px`; // 70px 是 header 高度
+    });
 }
