@@ -18,8 +18,67 @@ header {
     z-index: 1002;
 }
 
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 70px; /* 留出 header 空间 */
+    height: calc(100% - 70px);
+    width: 250px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    z-index: 1001;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+.sidebar-toggle {
+    position: fixed;
+    left: 0;
+    top: 70px; /* 初始位置与 header 底部对齐 */
+    background-color: #1da1f2;
+    color: white;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.sidebar-content {
+    margin-top: 20px;
+}
+
+#sidebar-search {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#category-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#category-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+#category-list li:hover {
+    background-color: #e0e0e0;
+}
+
 #user-list {
     margin-top: 70px; /* 留出 header 空间 */
+    margin-left: 270px; /* 留出侧边栏空间 */
     padding: 20px;
     box-sizing: border-box;
 }
@@ -180,65 +239,6 @@ header {
     margin-bottom: 10px; /* 标题与网格间距 */
 }
 
-/* 侧边目录模块样式 */
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 70px; /* 留出 header 空间 */
-    height: calc(100% - 70px);
-    width: 250px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-    z-index: 1001;
-}
-
-.sidebar.collapsed {
-    transform: translateX(-100%);
-}
-
-.sidebar-toggle {
-    position: fixed;
-    left: 0;
-    top: 70px; /* 初始位置与 header 底部对齐 */
-    background-color: #1da1f2;
-    color: white;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.sidebar-content {
-    margin-top: 20px;
-}
-
-#sidebar-search {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-}
-
-#category-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-#category-list li {
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
-}
-
-#category-list li:hover {
-    background-color: #e0e0e0;
-}
-
 @media (max-width: 1200px) {
     .user-card {
         flex: 0 0 calc(33.33% - 20px); /* 每行3个用户 */
@@ -254,6 +254,11 @@ header {
 
     .sidebar {
         width: 200px;
+    }
+
+    #user-list {
+        margin-left: 220px;
+        width: calc(100% - 220px);
     }
 }
 
@@ -280,5 +285,10 @@ header {
         top: auto;
         bottom: -30px;
         border-radius: 5px 5px 0 0;
+    }
+
+    #user-list {
+        margin-left: 0;
+        width: 100%;
     }
 }
