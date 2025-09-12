@@ -199,9 +199,9 @@ header {
 }
 
 .sidebar-toggle {
-    position: absolute;
-    right: -30px;
-    top: 20px;
+    position: fixed;
+    left: 0;
+    top: 70px; /* 初始位置与 header 底部对齐 */
     background-color: #1da1f2;
     color: white;
     width: 30px;
@@ -211,6 +211,7 @@ header {
     align-items: center;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
+    z-index: 1001;
 }
 
 .sidebar-content {
@@ -275,7 +276,7 @@ header {
     }
 
     .sidebar-toggle {
-        right: 20px;
+        left: 20px;
         top: auto;
         bottom: -30px;
         border-radius: 5px 5px 0 0;
