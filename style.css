@@ -4,7 +4,6 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
-    display: flex; /* 使用 flex 布局，确保主内容居中 */
 }
 
 header {
@@ -13,13 +12,22 @@ header {
     padding: 10px;
     text-align: center;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1002;
+}
+
+#user-list {
+    margin-top: 70px; /* 留出 header 空间 */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .user-row {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 20px;
     justify-content: center; /* 居中显示用户卡片 */
 }
 
@@ -176,8 +184,8 @@ header {
 .sidebar {
     position: fixed;
     left: 0;
-    top: 0;
-    height: 100%;
+    top: 70px; /* 留出 header 空间 */
+    height: calc(100% - 70px);
     width: 250px;
     background-color: #f9f9f9;
     padding: 20px;
@@ -230,14 +238,7 @@ header {
     background-color: #e0e0e0;
 }
 
-#user-list {
-    margin-left: 0; /* 移除左侧边距 */
-    width: 100%; /* 占满宽度 */
-    padding: 20px; /* 添加内边距 */
-    box-sizing: border-box; /* 确保内边距不影响宽度 */
-}
-
-@media (max-width: 1200px) { /* 调整为较大的断点，确保侧边栏展开时布局合理 */
+@media (max-width: 1200px) {
     .user-card {
         flex: 0 0 calc(33.33% - 20px); /* 每行3个用户 */
         max-width: calc(33.33% - 20px);
@@ -252,11 +253,6 @@ header {
 
     .sidebar {
         width: 200px;
-    }
-
-    #user-list {
-        margin-left: 220px;
-        width: calc(100% - 220px);
     }
 }
 
@@ -283,10 +279,5 @@ header {
         top: auto;
         bottom: -30px;
         border-radius: 5px 5px 0 0;
-    }
-
-    #user-list {
-        margin-left: 0;
-        width: 100%;
     }
 }
