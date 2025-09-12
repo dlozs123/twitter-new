@@ -231,11 +231,20 @@ header {
 }
 
 #user-list {
-    margin-left: 270px; /* 留出侧边栏空间 */
-    width: calc(100% - 270px); /* 确保主内容宽度 */
+    margin-left: 0; /* 移除左侧边距 */
+    width: 100%; /* 占满宽度 */
+    padding: 20px; /* 添加内边距 */
+    box-sizing: border-box; /* 确保内边距不影响宽度 */
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1200px) { /* 调整为较大的断点，确保侧边栏展开时布局合理 */
+    .user-card {
+        flex: 0 0 calc(33.33% - 20px); /* 每行3个用户 */
+        max-width: calc(33.33% - 20px);
+    }
+}
+
+@media (max-width: 800px) {
     .user-card {
         flex: 0 0 calc(50% - 20px); /* 小屏两列 */
         max-width: calc(50% - 20px);
@@ -247,4 +256,37 @@ header {
 
     #user-list {
         margin-left: 220px;
-        width: calc(100% -
+        width: calc(100% - 220px);
+    }
+}
+
+@media (max-width: 600px) {
+    .user-card {
+        flex: 0 0 calc(100% - 20px); /* 单列 */
+        max-width: calc(100% - 20px);
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        top: auto;
+        bottom: 0;
+        transform: translateY(100%);
+    }
+
+    .sidebar.collapsed {
+        transform: translateY(0);
+    }
+
+    .sidebar-toggle {
+        right: 20px;
+        top: auto;
+        bottom: -30px;
+        border-radius: 5px 5px 0 0;
+    }
+
+    #user-list {
+        margin-left: 0;
+        width: 100%;
+    }
+}
